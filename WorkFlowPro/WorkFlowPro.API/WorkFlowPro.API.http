@@ -1,0 +1,6 @@
+@WorkFlowPro.API_HostAddress = http://localhost:5273
+
+GET {{WorkFlowPro.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
