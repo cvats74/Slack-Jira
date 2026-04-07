@@ -92,7 +92,7 @@
         "projectPath": "D:\\CV_VS\\VS projects\\Slack\\WorkFlowPro\\WorkFlowPro.Application\\WorkFlowPro.Application.csproj",
         "UsingMicrosoftNETSdk": false,
         "frameworks": {
-          "net472": {
+          "net481": {
             "projectReferences": {
               "D:\\CV_VS\\VS projects\\Slack\\WorkFlowPro\\WorkFlowPro.Domain\\WorkFlowPro.Domain.csproj": {
                 "projectPath": "D:\\CV_VS\\VS projects\\Slack\\WorkFlowPro\\WorkFlowPro.Domain\\WorkFlowPro.Domain.csproj"
@@ -102,7 +102,7 @@
         }
       },
       "frameworks": {
-        "net472": {}
+        "net481": {}
       }
     },
     "D:\\CV_VS\\VS projects\\Slack\\WorkFlowPro\\WorkFlowPro.Domain\\WorkFlowPro.Domain.csproj": {
@@ -112,13 +112,13 @@
         "projectPath": "D:\\CV_VS\\VS projects\\Slack\\WorkFlowPro\\WorkFlowPro.Domain\\WorkFlowPro.Domain.csproj",
         "UsingMicrosoftNETSdk": false,
         "frameworks": {
-          "net472": {
+          "net481": {
             "projectReferences": {}
           }
         }
       },
       "frameworks": {
-        "net472": {}
+        "net481": {}
       }
     },
     "D:\\CV_VS\\VS projects\\Slack\\WorkFlowPro\\WorkFlowPro.Infrastructure\\WorkFlowPro.Infrastructure.csproj": {
@@ -128,7 +128,7 @@
         "projectPath": "D:\\CV_VS\\VS projects\\Slack\\WorkFlowPro\\WorkFlowPro.Infrastructure\\WorkFlowPro.Infrastructure.csproj",
         "UsingMicrosoftNETSdk": false,
         "frameworks": {
-          "net472": {
+          "net481": {
             "projectReferences": {
               "D:\\CV_VS\\VS projects\\Slack\\WorkFlowPro\\WorkFlowPro.Application\\WorkFlowPro.Application.csproj": {
                 "projectPath": "D:\\CV_VS\\VS projects\\Slack\\WorkFlowPro\\WorkFlowPro.Application\\WorkFlowPro.Application.csproj"
@@ -141,7 +141,7 @@
         }
       },
       "frameworks": {
-        "net472": {}
+        "net481": {}
       }
     }
   }

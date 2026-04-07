@@ -18,5 +18,5 @@
   <ItemGroup>
     <Folder Include="Controllers\" />
   </ItemGroup>
-
+	<LangVersion>8.0</LangVersion>
 </Project>
