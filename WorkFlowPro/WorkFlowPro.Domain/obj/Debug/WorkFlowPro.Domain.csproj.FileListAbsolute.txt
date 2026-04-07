@@ -1,0 +1,2 @@
+D:\CV_VS\VS projects\Slack\WorkFlowPro\WorkFlowPro.Domain\obj\Debug\WorkFlowPro.Domain.csproj.AssemblyReference.cache
+D:\CV_VS\VS projects\Slack\WorkFlowPro\WorkFlowPro.Domain\obj\Debug\WorkFlowPro.Domain.csproj.CoreCompileInputs.cache
