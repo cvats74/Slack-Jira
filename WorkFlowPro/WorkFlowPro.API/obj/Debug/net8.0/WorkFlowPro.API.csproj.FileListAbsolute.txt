@@ -1,0 +1,8 @@
+D:\CV_VS\VS projects\Slack\WorkFlowPro\WorkFlowPro.API\obj\Debug\net8.0\WorkFlowPro.API.csproj.AssemblyReference.cache
+D:\CV_VS\VS projects\Slack\WorkFlowPro\WorkFlowPro.API\obj\Debug\net8.0\rpswa.dswa.cache.json
+D:\CV_VS\VS projects\Slack\WorkFlowPro\WorkFlowPro.API\obj\Debug\net8.0\WorkFlowPro.API.GeneratedMSBuildEditorConfig.editorconfig
+D:\CV_VS\VS projects\Slack\WorkFlowPro\WorkFlowPro.API\obj\Debug\net8.0\WorkFlowPro.API.AssemblyInfoInputs.cache
+D:\CV_VS\VS projects\Slack\WorkFlowPro\WorkFlowPro.API\obj\Debug\net8.0\WorkFlowPro.API.AssemblyInfo.cs
+D:\CV_VS\VS projects\Slack\WorkFlowPro\WorkFlowPro.API\obj\Debug\net8.0\WorkFlowPro.API.csproj.CoreCompileInputs.cache
+D:\CV_VS\VS projects\Slack\WorkFlowPro\WorkFlowPro.API\obj\Debug\net8.0\WorkFlowPro.API.MvcApplicationPartsAssemblyInfo.cache
+D:\CV_VS\VS projects\Slack\WorkFlowPro\WorkFlowPro.API\obj\Debug\net8.0\WorkFlowPro.API.sourcelink.json
