@@ -26,19 +26,13 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
-            "projectReferences": {
-              "D:\\CV_VS\\VS projects\\Slack\\WorkFlowPro\\WorkFlowPro.Application\\WorkFlowPro.Application.csproj": {
-                "projectPath": "D:\\CV_VS\\VS projects\\Slack\\WorkFlowPro\\WorkFlowPro.Application\\WorkFlowPro.Application.csproj"
-              },
-              "D:\\CV_VS\\VS projects\\Slack\\WorkFlowPro\\WorkFlowPro.Infrastructure\\WorkFlowPro.Infrastructure.csproj": {
-                "projectPath": "D:\\CV_VS\\VS projects\\Slack\\WorkFlowPro\\WorkFlowPro.Infrastructure\\WorkFlowPro.Infrastructure.csproj"
-              }
-            }
+            "projectReferences": {}
           }
         },
         "warningProperties": {
@@ -51,7 +45,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "10.0.100"
       },
       "frameworks": {
         "net8.0": {
@@ -81,67 +75,8 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.308/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.100/PortableRuntimeIdentifierGraph.json"
         }
-      }
-    },
-    "D:\\CV_VS\\VS projects\\Slack\\WorkFlowPro\\WorkFlowPro.Application\\WorkFlowPro.Application.csproj": {
-      "restore": {
-        "projectUniqueName": "D:\\CV_VS\\VS projects\\Slack\\WorkFlowPro\\WorkFlowPro.Application\\WorkFlowPro.Application.csproj",
-        "projectName": "WorkFlowPro.Application",
-        "projectPath": "D:\\CV_VS\\VS projects\\Slack\\WorkFlowPro\\WorkFlowPro.Application\\WorkFlowPro.Application.csproj",
-        "UsingMicrosoftNETSdk": false,
-        "frameworks": {
-          "net481": {
-            "projectReferences": {
-              "D:\\CV_VS\\VS projects\\Slack\\WorkFlowPro\\WorkFlowPro.Domain\\WorkFlowPro.Domain.csproj": {
-                "projectPath": "D:\\CV_VS\\VS projects\\Slack\\WorkFlowPro\\WorkFlowPro.Domain\\WorkFlowPro.Domain.csproj"
-              }
-            }
-          }
-        }
-      },
-      "frameworks": {
-        "net481": {}
-      }
-    },
-    "D:\\CV_VS\\VS projects\\Slack\\WorkFlowPro\\WorkFlowPro.Domain\\WorkFlowPro.Domain.csproj": {
-      "restore": {
-        "projectUniqueName": "D:\\CV_VS\\VS projects\\Slack\\WorkFlowPro\\WorkFlowPro.Domain\\WorkFlowPro.Domain.csproj",
-        "projectName": "WorkFlowPro.Domain",
-        "projectPath": "D:\\CV_VS\\VS projects\\Slack\\WorkFlowPro\\WorkFlowPro.Domain\\WorkFlowPro.Domain.csproj",
-        "UsingMicrosoftNETSdk": false,
-        "frameworks": {
-          "net481": {
-            "projectReferences": {}
-          }
-        }
-      },
-      "frameworks": {
-        "net481": {}
-      }
-    },
-    "D:\\CV_VS\\VS projects\\Slack\\WorkFlowPro\\WorkFlowPro.Infrastructure\\WorkFlowPro.Infrastructure.csproj": {
-      "restore": {
-        "projectUniqueName": "D:\\CV_VS\\VS projects\\Slack\\WorkFlowPro\\WorkFlowPro.Infrastructure\\WorkFlowPro.Infrastructure.csproj",
-        "projectName": "WorkFlowPro.Infrastructure",
-        "projectPath": "D:\\CV_VS\\VS projects\\Slack\\WorkFlowPro\\WorkFlowPro.Infrastructure\\WorkFlowPro.Infrastructure.csproj",
-        "UsingMicrosoftNETSdk": false,
-        "frameworks": {
-          "net481": {
-            "projectReferences": {
-              "D:\\CV_VS\\VS projects\\Slack\\WorkFlowPro\\WorkFlowPro.Application\\WorkFlowPro.Application.csproj": {
-                "projectPath": "D:\\CV_VS\\VS projects\\Slack\\WorkFlowPro\\WorkFlowPro.Application\\WorkFlowPro.Application.csproj"
-              },
-              "D:\\CV_VS\\VS projects\\Slack\\WorkFlowPro\\WorkFlowPro.Domain\\WorkFlowPro.Domain.csproj": {
-                "projectPath": "D:\\CV_VS\\VS projects\\Slack\\WorkFlowPro\\WorkFlowPro.Domain\\WorkFlowPro.Domain.csproj"
-              }
-            }
-          }
-        }
-      },
-      "frameworks": {
-        "net481": {}
       }
     }
   }

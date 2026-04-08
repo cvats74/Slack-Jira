@@ -1,9 +1,0 @@
-D:\CV_VS\VS projects\Slack\WorkFlowPro\WorkFlowPro.Domain\obj\Debug\WorkFlowPro.Domain.csproj.AssemblyReference.cache
-D:\CV_VS\VS projects\Slack\WorkFlowPro\WorkFlowPro.Domain\obj\Debug\WorkFlowPro.Domain.csproj.CoreCompileInputs.cache
-D:\CV_VS\VS projects\Slack\WorkFlowPro\WorkFlowPro.Domain\bin\Debug\local.mdf
-D:\CV_VS\VS projects\Slack\WorkFlowPro\WorkFlowPro.Domain\bin\Debug\local_log.ldf
-D:\CV_VS\VS projects\Slack\WorkFlowPro\WorkFlowPro.Domain\bin\Debug\WorkFlowPro.Domain.dll.config
-D:\CV_VS\VS projects\Slack\WorkFlowPro\WorkFlowPro.Domain\bin\Debug\WorkFlowPro.Domain.dll
-D:\CV_VS\VS projects\Slack\WorkFlowPro\WorkFlowPro.Domain\bin\Debug\WorkFlowPro.Domain.pdb
-D:\CV_VS\VS projects\Slack\WorkFlowPro\WorkFlowPro.Domain\obj\Debug\WorkFlowPro.Domain.dll
-D:\CV_VS\VS projects\Slack\WorkFlowPro\WorkFlowPro.Domain\obj\Debug\WorkFlowPro.Domain.pdb
