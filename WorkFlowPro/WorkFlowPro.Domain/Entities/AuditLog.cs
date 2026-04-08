@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WorkFlowPro.Domain.Common;
 
 namespace WorkFlowPro.Domain.Entities
 {
     public class AuditLog : BaseEntity
     {
+
         public string EntityName { get; set; } = string.Empty;
         public string EntityId { get; set; } = string.Empty;
         public string Action { get; set; } = string.Empty;

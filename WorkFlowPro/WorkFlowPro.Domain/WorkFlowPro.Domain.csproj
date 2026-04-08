@@ -68,7 +68,7 @@
     <Compile Include="Entities\FileAttachment.cs" />
     <Compile Include="Entities\Label.cs" />
     <Compile Include="Entities\Notification.cs" />
-    <Compile Include="Entities\Organisation.cs" />
+    <Compile Include="Entities\Organization.cs" />
     <Compile Include="Entities\Project.cs" />
     <Compile Include="Entities\ProjectMember.cs" />
     <Compile Include="Entities\User.cs" />

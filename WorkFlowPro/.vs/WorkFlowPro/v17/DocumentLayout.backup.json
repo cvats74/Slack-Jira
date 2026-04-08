@@ -1,26 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\CV_VS\\VS projects\\Slack\\WorkFlowPro\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{00000000-0000-0000-0000-000000000000}|\u003CSolution\u003E|WorkFlowPro.Domain||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7CC9BC0E-C567-4905-A0DB-93286856E0D8}|WorkFlowPro.Domain\\WorkFlowPro.Domain.csproj|d:\\cv_vs\\vs projects\\slack\\workflowpro\\workflowpro.domain\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7CC9BC0E-C567-4905-A0DB-93286856E0D8}|WorkFlowPro.Domain\\WorkFlowPro.Domain.csproj|solutionrelative:workflowpro.domain\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1AF68444-22B9-46EB-921C-3496965EC2F3}|WorkFlowPro.Infrastructure\\WorkFlowPro.Infrastructure.csproj|D:\\CV_VS\\VS projects\\Slack\\WorkFlowPro\\workflowpro.infrastructure\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1AF68444-22B9-46EB-921C-3496965EC2F3}|WorkFlowPro.Infrastructure\\WorkFlowPro.Infrastructure.csproj|solutionrelative:workflowpro.infrastructure\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AA78A74D-9EC5-46ED-99C9-4CD1B436E172}|WorkFlowPro.Application\\WorkFlowPro.Application.csproj|D:\\CV_VS\\VS projects\\Slack\\WorkFlowPro\\workflowpro.application\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AA78A74D-9EC5-46ED-99C9-4CD1B436E172}|WorkFlowPro.Application\\WorkFlowPro.Application.csproj|solutionrelative:workflowpro.application\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7CC9BC0E-C567-4905-A0DB-93286856E0D8}|WorkFlowPro.Domain\\WorkFlowPro.Domain.csproj|d:\\cv_vs\\vs projects\\slack\\workflowpro\\workflowpro.domain\\||{B270807C-D8C6-49EB-8EBE-8E8D566637A1}|a54ad834-9219-4aa6-b589-607af21c3e26"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -28,33 +9,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": -1,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Class1.cs",
-              "DocumentMoniker": "D:\\CV_VS\\VS projects\\Slack\\WorkFlowPro\\WorkFlowPro.Infrastructure\\Class1.cs",
-              "RelativeDocumentMoniker": "WorkFlowPro.Infrastructure\\Class1.cs",
-              "ToolTip": "D:\\CV_VS\\VS projects\\Slack\\WorkFlowPro\\WorkFlowPro.Infrastructure\\Class1.cs",
-              "RelativeToolTip": "WorkFlowPro.Infrastructure\\Class1.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-31T11:00:29.957Z",
-              "IsPinned": true
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "WorkFlowPro.Domain",
-              "DocumentMoniker": "D:\\CV_VS\\VS projects\\Slack\\WorkFlowPro\\WorkFlowPro.Domain\\WorkFlowPro.Domain.csproj",
-              "RelativeDocumentMoniker": "WorkFlowPro.Domain\\WorkFlowPro.Domain.csproj",
-              "ToolTip": "D:\\CV_VS\\VS projects\\Slack\\WorkFlowPro\\WorkFlowPro.Domain\\WorkFlowPro.Domain.csproj",
-              "RelativeToolTip": "WorkFlowPro.Domain\\WorkFlowPro.Domain.csproj",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2026-04-07T11:09:12.441Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
@@ -98,31 +54,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "User.cs",
-              "DocumentMoniker": "D:\\CV_VS\\VS projects\\Slack\\WorkFlowPro\\WorkFlowPro.Domain\\Entities\\User.cs",
-              "RelativeDocumentMoniker": "WorkFlowPro.Domain\\Entities\\User.cs",
-              "ToolTip": "D:\\CV_VS\\VS projects\\Slack\\WorkFlowPro\\WorkFlowPro.Domain\\Entities\\User.cs",
-              "RelativeToolTip": "WorkFlowPro.Domain\\Entities\\User.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAQwB0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-07T10:52:34.689Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Class1.cs",
-              "DocumentMoniker": "D:\\CV_VS\\VS projects\\Slack\\WorkFlowPro\\WorkFlowPro.Application\\Class1.cs",
-              "RelativeDocumentMoniker": "WorkFlowPro.Application\\Class1.cs",
-              "ToolTip": "D:\\CV_VS\\VS projects\\Slack\\WorkFlowPro\\WorkFlowPro.Application\\Class1.cs",
-              "RelativeToolTip": "WorkFlowPro.Application\\Class1.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAgAAAAXAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-31T11:00:04.293Z"
             }
           ]
         }

@@ -14,7 +14,7 @@ namespace WorkFlowPro.Domain.Entities
         {
             Members = new List<ProjectMember>();
             Tasks = new List<WorkItem>();
-            ChatChannels = new List<ChatChannels>();
+            ChatChannels = new List<ChatChannel>();
 
 
         }

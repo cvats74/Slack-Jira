@@ -5,6 +5,7 @@ using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using WorkFlowPro.Domain.Common;
+using WorkFlowPro.Domain.Enums;
 
 namespace WorkFlowPro.Domain.Entities
 {
@@ -22,8 +23,8 @@ namespace WorkFlowPro.Domain.Entities
         }
         public string Title { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
-        public TaskStatus Status { get; set; } = TaskStatus.Todo;
-        public TaskPriority Priority { get; set; } = TaskPriority.Medium;
+        public WorkFlowPro.Domain.Enums.TaskStatus Status { get; set; } = WorkFlowPro.Domain.Enums.TaskStatus.ToDo;
+        public  TaskPriority Priority { get; set; } = TaskPriority.Medium;
         public DateTime? DueDate { get; set; }
         public int? EstimatedHours { get; set; }
         public int? ActualHours { get; set; }
