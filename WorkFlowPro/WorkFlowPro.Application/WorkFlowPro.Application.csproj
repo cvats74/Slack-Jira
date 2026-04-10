@@ -17,4 +17,11 @@
     <ProjectReference Include="..\WorkFlowPro.Domain\WorkFlowPro.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Common\Interfaces\" />
+    <Folder Include="Common\DTOs\" />
+    <Folder Include="Features\Auth\Commands\" />
+    <Folder Include="Features\Auth\Queries\" />
+  </ItemGroup>
+
 </Project>
