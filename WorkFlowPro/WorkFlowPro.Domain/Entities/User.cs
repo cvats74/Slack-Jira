@@ -28,7 +28,7 @@ namespace WorkFlowPro.Domain.Entities
 
         //organisation
 
-        public Guid OrganisationId { get; set; }
+        public Guid OrganizationId { get; set; }
         public Organization? Organization { get; set; }
 
         //Navigation 
