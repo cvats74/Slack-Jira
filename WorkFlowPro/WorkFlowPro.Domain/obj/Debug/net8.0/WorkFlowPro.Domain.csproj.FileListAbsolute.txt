@@ -1,0 +1,12 @@
+D:\CV_VS\VS projects\Slack\WorkFlowPro\WorkFlowPro.Domain\bin\Debug\net8.0\WorkFlowPro.Domain.deps.json
+D:\CV_VS\VS projects\Slack\WorkFlowPro\WorkFlowPro.Domain\bin\Debug\net8.0\WorkFlowPro.Domain.dll
+D:\CV_VS\VS projects\Slack\WorkFlowPro\WorkFlowPro.Domain\bin\Debug\net8.0\WorkFlowPro.Domain.pdb
+D:\CV_VS\VS projects\Slack\WorkFlowPro\WorkFlowPro.Domain\obj\Debug\net8.0\WorkFlowPro.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\CV_VS\VS projects\Slack\WorkFlowPro\WorkFlowPro.Domain\obj\Debug\net8.0\WorkFlowPro.Domain.AssemblyInfoInputs.cache
+D:\CV_VS\VS projects\Slack\WorkFlowPro\WorkFlowPro.Domain\obj\Debug\net8.0\WorkFlowPro.Domain.AssemblyInfo.cs
+D:\CV_VS\VS projects\Slack\WorkFlowPro\WorkFlowPro.Domain\obj\Debug\net8.0\WorkFlowPro.Domain.csproj.CoreCompileInputs.cache
+D:\CV_VS\VS projects\Slack\WorkFlowPro\WorkFlowPro.Domain\obj\Debug\net8.0\WorkFlowPro.Domain.sourcelink.json
+D:\CV_VS\VS projects\Slack\WorkFlowPro\WorkFlowPro.Domain\obj\Debug\net8.0\WorkFlowPro.Domain.dll
+D:\CV_VS\VS projects\Slack\WorkFlowPro\WorkFlowPro.Domain\obj\Debug\net8.0\refint\WorkFlowPro.Domain.dll
+D:\CV_VS\VS projects\Slack\WorkFlowPro\WorkFlowPro.Domain\obj\Debug\net8.0\WorkFlowPro.Domain.pdb
+D:\CV_VS\VS projects\Slack\WorkFlowPro\WorkFlowPro.Domain\obj\Debug\net8.0\ref\WorkFlowPro.Domain.dll
