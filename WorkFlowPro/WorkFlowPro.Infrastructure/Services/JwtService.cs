@@ -24,7 +24,7 @@ namespace WorkFlowPro.Infrastructure.Services
         
         }
 
-        public string GenarateToken(User user)
+        public string GenerateToken(User user)
         {
 
             //getting things from appsetting.json
@@ -81,7 +81,7 @@ namespace WorkFlowPro.Infrastructure.Services
             return Convert.ToBase64String(randomBytes);
         }
 
-        public DateTime GenerateTokenExpiry()
+        public DateTime GetTokenExpiry()
         {
             var everyMinutes = int.Parse(_configuration["JwtSettings:ExpiryMinutes"]!);
             return DateTime.UtcNow.AddMinutes(everyMinutes);

@@ -24,7 +24,7 @@ namespace WorkFlowPro.Domain.Entities
 
         public string? ProfilePicture {  get; set; }
         public string? PhoneNumber { get; set; }
-        public DateTime? LastloginAt{ get; set; }
+        public DateTime? LastLoginAt{ get; set; }
 
         //organisation
 
