@@ -17,8 +17,7 @@ namespace WorkFlowPro.Application.Features.Auth.DTOs
         public string Password { get; set; } = string.Empty;
 
         // Name of company being created
-        public string OrganizationName { get; set; }
-            = string.Empty;
+        public string OrganizationName { get; set; } = string.Empty;
     }
 
     public class LoginDto
