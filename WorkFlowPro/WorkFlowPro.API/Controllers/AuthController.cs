@@ -14,6 +14,36 @@ namespace WorkFlowPro.API.Controllers
 
             _authService = authService;
         }
+        // POST /api/auth/register
+        [HttpPost("register")]
+        public async Task<IActionResult> Register(
+            [FromBody] RegisterDto dto)
+        {
+            try
+            {
+                var result = await _authService
+                    .RegisterAsync(dto);
+
+                // 201 Created with response body
+                return CreatedAtAction(
+                    nameof(Register),
+                    result);
+            }
+            catch (InvalidOperationException ex)
+            {
+                // 400 Bad Request — business rule violation
+                return BadRequest(new { message = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                // 500 Internal Server Error
+                return StatusCode(500, new
+                {
+                    message = "An error occurred.",
+                    detail = ex.Message
+                });
+            }
+        }
 
         //post /pi/auth/login
         [HttpPost("login")]

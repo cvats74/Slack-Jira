@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WorkFlowPro.Infrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7c50516861508450e67874c443b18684da94e92f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4bd09b23ebfa5b63d3679a8e09e420c0336d9054")]
 [assembly: System.Reflection.AssemblyProductAttribute("WorkFlowPro.Infrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WorkFlowPro.Infrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,47 +1,56 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using WorkFlowPro.Infrastructure;
-using WorkFlowPro.Infrastructure.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// =============================================
+// REGISTER SERVICES
+// =============================================
 
-//register all infrastructure services(DbContext, Repositories, Services)
-
+// Registers DbContext + Repositories + Services
+// DbContext registered ONLY here — not again below
 builder.Services.AddInfrastructure(builder.Configuration);
 
-// Register JWT Authentication
-var jwtSettings = builder.Configuration.GetSection("JwtSettings");
+// JWT Authentication setup
+var jwtSettings = builder.Configuration
+    .GetSection("JwtSettings");
 var secretKey = jwtSettings["SecretKey"]!;
 
-builder.Services.AddAuthentication(options =>
-{
-
-    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-}).AddJwtBearer(options =>
-{
-    options.TokenValidationParameters = new TokenValidationParameters
+builder.Services
+    .AddAuthentication(options =>
     {
-        // Validate the server that issued token
-        ValidateIssuer = true,
-        ValidIssuer = jwtSettings["Audience"],
+        options.DefaultAuthenticateScheme =
+            JwtBearerDefaults.AuthenticationScheme;
+        options.DefaultChallengeScheme =
+            JwtBearerDefaults.AuthenticationScheme;
+    })
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters =
+            new TokenValidationParameters
+            {
+                ValidateIssuer = true,
+                ValidIssuer = jwtSettings["Issuer"],
+                
 
-        ValidateLifetime = true,
+                ValidateAudience = true,
+                ValidAudience = jwtSettings["Audience"],
 
-        ValidateIssuerSigningKey = true,
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey))
-    };
-});
+                ValidateLifetime = true,
 
-builder.Services.AddAuthentication();
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(
+                    Encoding.UTF8.GetBytes(secretKey))
+            };
+    });
+
+builder.Services.AddAuthorization();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
-// Configure Swagger to support JWT
-
+// Swagger with JWT support
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new()
@@ -50,7 +59,6 @@ builder.Services.AddSwaggerGen(c =>
         Version = "v1"
     });
 
-    // Add JWT button to Swagger UI
     c.AddSecurityDefinition("Bearer", new()
     {
         Name = "Authorization",
@@ -60,8 +68,7 @@ builder.Services.AddSwaggerGen(c =>
         BearerFormat = "JWT",
         In = Microsoft.OpenApi.Models
             .ParameterLocation.Header,
-        Description =
-            "Enter: Bearer {your token here}"
+        Description = "Enter: Bearer {your token here}"
     });
 
     c.AddSecurityRequirement(new()
@@ -81,30 +88,12 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-
-// Add services to the container.
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(
-        builder.Configuration
-               .GetConnectionString("DefaultConnection"),
-        sqlOptions =>
-        {
-            // Retry logic: if connection fails,
-            // try again up to 3 times
-            sqlOptions.EnableRetryOnFailure(
-                maxRetryCount: 3,
-                maxRetryDelay: TimeSpan.FromSeconds(30),
-                errorNumbersToAdd: null);
-        }));
-
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+// =============================================
+// BUILD PIPELINE
+// =============================================
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -112,9 +101,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseAuthentication();
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();
