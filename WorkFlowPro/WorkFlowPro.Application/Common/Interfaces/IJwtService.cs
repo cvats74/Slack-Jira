@@ -10,8 +10,8 @@ namespace WorkFlowPro.Application.Common.Interfaces
                                                // Single Responsibility Principle(one class do one thing)
     public interface IJwtService
     {
-        string GenarateToken(User user);
+        string GenerateToken(User user);
         string GenerateRefreshToken();
-        DateTime GenerateTokenExpiry();
+        DateTime GetTokenExpiry();
     }
 }

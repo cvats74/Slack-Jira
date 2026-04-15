@@ -1,13 +1,16 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using WorkFlowPro.Application.Common.Interfaces;
 using WorkFlowPro.Domain.Entities;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Security.Cryptography;
 
 namespace WorkFlowPro.Infrastructure.Services
 {
@@ -21,7 +24,7 @@ namespace WorkFlowPro.Infrastructure.Services
         
         }
 
-        public string GenarateToken(User user)
+        public string GenerateToken(User user)
         {
 
             //getting things from appsetting.json
@@ -37,17 +40,51 @@ namespace WorkFlowPro.Infrastructure.Services
             var credentials = new SigningCredentials(Key,SecurityAlgorithms.HmacSha256);
 
             // Define claims(data inside token)
-            return ;
+
+            var claims = new[]
+            {
+                // Standard JWT claims
+                new Claim(JwtRegisteredClaimNames.Sub,
+                    user.Id.ToString()),
+                new Claim(JwtRegisteredClaimNames.Email,
+                    user.Email),
+                new Claim(JwtRegisteredClaimNames.Jti,
+                    Guid.NewGuid().ToString()),
+
+                // Custom claims for our app
+                new Claim("userId", user.Id.ToString()),
+                new Claim("organizationId",
+                    user.OrganizationId.ToString()),
+                new Claim(ClaimTypes.Role,
+                    user.Role.ToString()),
+                new Claim("fullName", user.FullName)
+            };
+
+            // STEP 4: Build the token
+            var token = new JwtSecurityToken(
+                issuer: issuer,
+                audience: audience,
+                claims: claims,
+                expires: DateTime.UtcNow.AddMinutes(expiryMinutes),
+              signingCredentials: credentials);
+
+            // STEP 5: Serialize to string
+            return new JwtSecurityTokenHandler().WriteToken(token);
+            
         }
 
         public string GenerateRefreshToken()
         {
-            throw new NotImplementedException();
+            var randomBytes = new Byte[64];
+            using var rng = RandomNumberGenerator.Create();
+            rng.GetBytes(randomBytes);
+            return Convert.ToBase64String(randomBytes);
         }
 
-        public DateTime GenerateTokenExpiry()
+        public DateTime GetTokenExpiry()
         {
-            throw new NotImplementedException();
+            var everyMinutes = int.Parse(_configuration["JwtSettings:ExpiryMinutes"]!);
+            return DateTime.UtcNow.AddMinutes(everyMinutes);
         }
     }
 }

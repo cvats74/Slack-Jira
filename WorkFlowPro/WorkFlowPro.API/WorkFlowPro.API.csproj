@@ -16,10 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\WorkFlowPro.Application\WorkFlowPro.Application.csproj" />
     <ProjectReference Include="..\WorkFlowPro.Domain\WorkFlowPro.Domain.csproj" />
     <ProjectReference Include="..\WorkFlowPro.Infrastructure\WorkFlowPro.Infrastructure.csproj" />
