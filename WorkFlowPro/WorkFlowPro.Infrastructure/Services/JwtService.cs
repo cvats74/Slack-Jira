@@ -32,7 +32,7 @@ namespace WorkFlowPro.Infrastructure.Services
             var secretKey = jwtSettings["SecretKey"]!;
             var issuer = jwtSettings["Issuer"]!;
             var audience = jwtSettings["Audience"]!;
-            var expiryMinutes = int.Parse(jwtSettings["expiryMinutes "]!);
+            var expiryMinutes = int.Parse(jwtSettings["expiryMinutes"]!);
 
             //creating signing key from secret
             var Key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));

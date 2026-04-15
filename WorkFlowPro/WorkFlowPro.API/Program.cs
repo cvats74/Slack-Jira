@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using WorkFlowPro.Infrastructure;
@@ -47,8 +48,32 @@ builder.Services
     });
 
 builder.Services.AddAuthorization();
-builder.Services.AddControllers();
+builder.Services.AddControllers().ConfigureApiBehaviorOptions(options =>
+{
+    options.InvalidModelStateResponseFactory = context =>
+    {
+        // Collect all validation errors
+        var errors = context.ModelState
+            .Where(e => e.Value?.Errors.Count > 0)
+            .SelectMany(e => e.Value!.Errors)
+            .Select(e => e.ErrorMessage)
+            .ToList();
+
+        // Return consistent ApiResponse format
+        var response = new
+        {
+            success = false,
+            message = "Validation failed",
+            errors = errors,
+            statusCode = 400
+        };
+
+        return new BadRequestObjectResult(response);
+    };
+});
 builder.Services.AddEndpointsApiExplorer();
+
+
 
 // Swagger with JWT support
 builder.Services.AddSwaggerGen(c =>
