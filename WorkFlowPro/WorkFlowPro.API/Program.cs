@@ -46,6 +46,22 @@ builder.Services
                     Encoding.UTF8.GetBytes(secretKey))
             };
     });
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("ReactApp", policy =>
+    {
+        policy
+            .WithOrigins(
+                "http://localhost:5173",
+                "https://localhost:5173"
+            )
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials();
+    });
+});
+
+
 
 builder.Services.AddAuthorization();
 builder.Services.AddControllers().ConfigureApiBehaviorOptions(options =>
@@ -125,6 +141,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors("ReactApp");
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();

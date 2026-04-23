@@ -26,11 +26,15 @@ namespace WorkFlowPro.Infrastructure
                 UserRepository>();
             services.AddScoped<IOrganizationRepository,
                 OrganizationRepository>();
-            
+            services.AddScoped<IProjectRepository, ProjectRepository>();
+
+
 
             // Services
             services.AddScoped<IJwtService, JwtService>();
             services.AddScoped<IAuthService, AuthService>();
+
+            services.AddScoped<IProjectService, ProjectService>();
 
             return services;
         }

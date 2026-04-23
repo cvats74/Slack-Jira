@@ -1,28 +1,46 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WorkFlowPro.Application.Features.Projects.DTOs;
+﻿using WorkFlowPro.Application.Features.Projects.DTOs;
 
 namespace WorkFlowPro.Application.Common.Interfaces
 {
     public interface IProjectService
     {
-        Task<ProjectResponseDto> CreateAsync(CreateProjectDTO dto, Guid currenUserId, Guid organisationId);
+        // currentUserId = who is making the request
+        // Extracted from JWT token
 
+        Task<ProjectResponseDto> CreateAsync(
+            CreateProjectDto dto,
+            Guid currentUserId,
+            Guid organizationId);
 
-        Task<ProjectResponseDto> GetByIdAsync(Guid projectId, Guid currentUserId);
+        Task<ProjectResponseDto?> GetByIdAsync(
+            Guid projectId,
+            Guid currentUserId);
 
-        Task<IEnumerable<ProjectSummaryDto>> GetMyProjectsAsync(Guid currentUserId, Guid organisationId);
+        Task<IEnumerable<ProjectSummaryDto>> GetMyProjectsAsync(
+            Guid currentUserId,
+            Guid organizationId);
 
-        Task<ProjectResponseDto> UpdateAsync(Guid projectId, UpdateProjectDTO dto, Guid currentUserId);
+        Task<ProjectResponseDto> UpdateAsync(
+            Guid projectId,
+            UpdateProjectDto dto,
+            Guid currentUserId);
 
-        Task DeleteAsync(Guid projectId, Guid currentUserId);
+        Task DeleteAsync(
+            Guid projectId,
+            Guid currentUserId);
 
-        Task<ProjectMemberDto> AddMemberAsync(Guid projectId, Guid memberUserId, Guid currentUserId);
+        Task<ProjectMemberDto> AddMemberAsync(
+            Guid projectId,
+            AddProjectMemberDto dto,
+            Guid currentUserId);
 
-        Task<IEnumerable<ProjectMemberDto>> GetMembersAsync(Guid projectId, Guid currentUserId);
+        Task RemoveMemberAsync(
+            Guid projectId,
+            Guid memberUserId,
+            Guid currentUserId);
+
+        Task<IEnumerable<ProjectMemberDto>> GetMembersAsync(
+            Guid projectId,
+            Guid currentUserId);
     }
-
 }

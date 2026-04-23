@@ -8,7 +8,7 @@ using WorkFlowPro.Domain.Enums;
 
 namespace WorkFlowPro.Application.Features.Projects.DTOs
 {
-    public class CreateProjectDTO
+    public class CreateProjectDto
     {
         [Required(ErrorMessage ="Project Name is Required")]
         [MaxLength(200, ErrorMessage = "Name cannot extent 200 characters")]
@@ -25,7 +25,7 @@ namespace WorkFlowPro.Application.Features.Projects.DTOs
 
     }
 
-    public class UpdateProjectDTO
+    public class UpdateProjectDto
     {
         [Required(ErrorMessage = "Project Name is Required")]
         [MaxLength(200)]

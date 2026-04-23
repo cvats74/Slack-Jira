@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WorkFlowPro.Application.Features.Projects.DTOs;
+﻿using WorkFlowPro.Application.Features.Projects.DTOs;
 using WorkFlowPro.Domain.Entities;
 
 namespace WorkFlowPro.Application.Common.Interfaces
 {
-    public  interface IProjectRepository
+    public interface IProjectRepository
     {
-        
         // Get single project by ID
         // includes members and tasks count
         Task<Project?> GetByIdAsync(Guid id);
@@ -19,32 +13,44 @@ namespace WorkFlowPro.Application.Common.Interfaces
         // (members, tasks, owner info)
         Task<Project?> GetByIdWithDetailsAsync(Guid id);
 
-        Task<IEnumerable<Project>> GetByOrganizationAsync(Guid organisationId);
+        // Get all projects for an organization
+        Task<IEnumerable<Project>> GetByOrganizationAsync(
+            Guid organizationId);
 
         // Get all projects a specific user is member of
-        Task<IEnumerable<Project>> GetByUserAsync(Guid userId);
+        Task<IEnumerable<Project>> GetByUserAsync(
+            Guid userId);
 
-        //checking if user is member of proj
-        Task<bool> IsUserMemberAsync(Guid projectId,Guid userId);
+        // Check if user is member of project
+        Task<bool> IsUserMemberAsync(
+            Guid projectId,
+            Guid userId);
 
-        //check if proj name exists in org
-        Task<bool> NameExistsInOrganizationAsync(string name, Guid organizationId);
+        // Check if project name exists in organization
+        Task<bool> NameExistsInOrganizationAsync(
+            string name,
+            Guid organizationId);
 
-        //create new proj
+        // Create new project
         Task<Project> CreateAsync(Project project);
 
-        //update proj
+        // Update existing project
         Task<Project> UpdateAsync(Project project);
+
+        // Add member to project
         Task AddMemberAsync(ProjectMember member);
 
-        //Remove member from Project
-        Task RemoveMemberAsync(Guid projectId, Guid userId);
+        // Remove member from project
+        Task RemoveMemberAsync(
+            Guid projectId,
+            Guid userId);
 
-        //get project member record
-        Task<Project?> GetMemberAsync(Guid projectId, Guid userId);
+        // Get project member record
+        Task<ProjectMember?> GetMemberAsync(
+            Guid projectId,
+            Guid userId);
 
-        //save all
+        // Save all pending changes
         Task<int> SaveChangesAsync();
     }
-
 }
