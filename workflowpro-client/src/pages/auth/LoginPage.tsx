@@ -128,6 +128,7 @@ function LoginPage() {
               placeholder="email"
               style={styles.input}
               disabled={isLoading}
+              autoComplete="off"
             />
           </div>
 
@@ -144,6 +145,7 @@ function LoginPage() {
               placeholder="password"
               style={styles.input}
               disabled={isLoading}
+              autoComplete="off"
             />
           </div>
 
