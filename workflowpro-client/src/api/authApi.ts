@@ -10,17 +10,9 @@ export const authApi = {
   
   login: async (dto: LoginDto): Promise<AuthResponseDto> => {
   try {
-    console.log('=== LOGIN DEBUG ===');
-    console.log('URL:', axiosInstance.defaults.baseURL + '/auth/login');
-    console.log('Sending:', dto);
-    
+   
     const response = await axiosInstance.post('/auth/login', dto);
-    
-    console.log('Full response:', response);
-    console.log('response.data:', response.data);
-    console.log('response.data.data:', response.data?.data);
-    console.log('=== END DEBUG ===');
-    
+   
     return response.data.data;
     
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -17,8 +17,7 @@ function ProjectsPage() {
   const [isLoading, setIsLoading] = useState(true);
 
   // Control create project modal visibility
-  const [showCreateModal, setShowCreateModal] = 
-    useState(false);
+  const [showCreateModal, setShowCreateModal] = useState(false);
 
   // New project form data
   const [newProject, setNewProject] = useState({
