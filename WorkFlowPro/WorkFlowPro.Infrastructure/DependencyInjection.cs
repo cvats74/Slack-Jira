@@ -27,6 +27,7 @@ namespace WorkFlowPro.Infrastructure
             services.AddScoped<IOrganizationRepository,
                 OrganizationRepository>();
             services.AddScoped<IProjectRepository, ProjectRepository>();
+            services.AddScoped<IWorkItemRepository, WorkItemRepository>();
 
 
 
@@ -35,6 +36,7 @@ namespace WorkFlowPro.Infrastructure
             services.AddScoped<IAuthService, AuthService>();
 
             services.AddScoped<IProjectService, ProjectService>();
+            services.AddScoped<IWorkItemService, WorkItemService>();
 
             return services;
         }

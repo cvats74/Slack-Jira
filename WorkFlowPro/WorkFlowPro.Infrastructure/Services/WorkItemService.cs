@@ -74,39 +74,148 @@ namespace WorkFlowPro.Infrastructure.Services
 
         public async Task DeleteAsync(Guid workItemId, Guid currentUserId)
         {
-            var workItem = await _workItemRepository.GetByIdWithDetailsAsync(currentUserId);
+            var workItem = await _workItemRepository
+                .GetByIdAsync(workItemId);
+
+            if (workItem == null)
+                throw new KeyNotFoundException(
+                    "Task not found.");
+
+            // Only reporter or project owner can delete
+            var project = await _projectRepository
+                .GetByIdAsync(workItem.ProjectId);
+
+            if (workItem.ReporterId != currentUserId &&
+                project?.OwnerId != currentUserId)
+                throw new UnauthorizedAccessException(
+                    "Not authorized to delete this task.");
+
+            // Soft delete
+            workItem.IsDeleted = true;
+            workItem.DeletedAt = DateTime.UtcNow;
+            workItem.DeletedBy = currentUserId;
+
+            await _workItemRepository.UpdateAsync(workItem);
+            await _workItemRepository.SaveChangesAsync();
+        }
+
+        public async Task<WorkItemResponseDto> GetByIdAsync(Guid workItemId, Guid currentUserId)
+        {
+            var workItem = await _workItemRepository.GetByIdWithDetailsAsync(workItemId);
             if (workItem != null)
             {
                 throw new KeyNotFoundException("Task not found");
             }
+            // Verify user has access via project membership
+            var isMember = await _projectRepository
+                .IsUserMemberAsync(
+                    workItem.ProjectId,
+                    currentUserId);
 
-            var isMember = await _projectRepository.IsUserMemberAsync(workItem.ProjectId, currentUserId);
-            var isOwner = workItem.Project?.OwnerId == currentUserId;
+            var isOwner = workItem.Project?.OwnerId
+                == currentUserId;
 
             if (!isMember && !isOwner)
+                throw new UnauthorizedAccessException(
+                    "Access denied.");
+
+            return MapToResponseDto(workItem);
+
+        }
+
+        public async Task<IEnumerable<WorkItemSummaryDto>> GetByProjectAsync(Guid projectId, Guid currentUserId)
+        {
+            var project = await _projectRepository.GetByIdAsync(projectId);
+
+            if(project == null)
+            {
+                throw new KeyNotFoundException("project not found");
+            }
+
+            var hasAccess = project.OwnerId == currentUserId || await _projectRepository.IsUserMemberAsync(projectId, currentUserId);
+
+            if(!hasAccess)
             {
                 throw new UnauthorizedAccessException("Access Denied");
+                
             }
+            var workItems = await _workItemRepository.GetByProjectAsync(projectId);
+             return workItems.Select(w => MapToSummaryDto(w)).ToList();
+
         }
 
-        public Task<WorkItemResponseDto> GetByIdAsync(Guid workItemId, Guid currentUserId)
+        public async Task<WorkItemResponseDto> UpdateAsync(Guid workItemId, UpdateWorkItemDto dto, Guid currentUserId)
         {
-            throw new NotImplementedException();
+            var workItem = await _workItemRepository
+               .GetByIdAsync(workItemId);
+
+            if (workItem == null)
+                throw new KeyNotFoundException(
+                    "Task not found.");
+
+            // Only reporter or assignee can update
+            if (workItem.ReporterId != currentUserId &&
+                workItem.AssigneeId != currentUserId)
+            {
+                // Or project owner can update
+                var project = await _projectRepository
+                    .GetByIdAsync(workItem.ProjectId);
+
+                if (project?.OwnerId != currentUserId)
+                    throw new UnauthorizedAccessException(
+                        "Not authorized to update this task.");
+            }
+
+            // Update fields
+            workItem.Title = dto.Title;
+            workItem.Description = dto.Description;
+            workItem.Priority = dto.Priority;
+            workItem.DueDate = dto.DueDate;
+            workItem.AssigneeId = dto.AssigneeId;
+            workItem.EstimatedHours = dto.EstimatedHours;
+            workItem.ActualHours = dto.ActualHours;
+            workItem.UpdatedBy = currentUserId;
+
+            await _workItemRepository.UpdateAsync(workItem);
+            await _workItemRepository.SaveChangesAsync();
+
+            var updated = await _workItemRepository
+                .GetByIdWithDetailsAsync(workItemId);
+
+            return MapToResponseDto(updated!);
         }
 
-        public Task<IEnumerable<WorkItemSummaryDto>> GetByProjectAsync(Guid projectId, Guid currentUserId)
+        public async Task<WorkItemResponseDto> UpdateStatusAsync(Guid workItemId, UpdateWorkItemStatusDto dto, Guid currentUserId)
         {
-            throw new NotImplementedException();
-        }
+            var workItem = await _workItemRepository
+                .GetByIdAsync(workItemId);
 
-        public Task<WorkItemResponseDto> UpdateAsync(Guid workItemId, UpdateWorkItemDto dto, Guid currentUserId)
-        {
-            throw new NotImplementedException();
-        }
+            if (workItem == null)
+                throw new KeyNotFoundException(
+                    "Task not found.");
 
-        public Task<WorkItemResponseDto> UpdateStatusAsync(Guid workItemId, UpdateWorkItemStatusDto dto, Guid currentUserId)
-        {
-            throw new NotImplementedException();
+            // Any project member can change status
+            // This enables drag-and-drop on Kanban
+            var isMember = await _projectRepository
+                .IsUserMemberAsync(
+                    workItem.ProjectId,
+                    currentUserId);
+
+            var project = await _projectRepository
+                .GetByIdAsync(workItem.ProjectId);
+
+            if (!isMember && project?.OwnerId != currentUserId)
+                throw new UnauthorizedAccessException(
+                    "Not authorized.");
+
+            workItem.Status = dto.Status;
+            workItem.UpdatedBy = currentUserId;
+
+            await _workItemRepository.UpdateAsync(workItem);
+            await _workItemRepository.SaveChangesAsync();
+
+            var updated = await _workItemRepository.GetByIdWithDetailsAsync(workItemId);
+            return MapToResponseDto(updated!);
         }
 
         private static WorkItemResponseDto MapToResponseDto(WorkItem w)

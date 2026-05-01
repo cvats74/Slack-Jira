@@ -46,7 +46,7 @@ namespace WorkFlowPro.Application.Features.WorkItems.DTOs
 
         public int? EstimatedHours { get; set; }
 
-        public DateTime? ActualHours { get; set; }
+        public int? ActualHours { get; set; }
 
     }
     //update only status
