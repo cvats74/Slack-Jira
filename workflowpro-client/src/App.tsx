@@ -5,6 +5,8 @@ import ProtectedRoute from './components/common/ProtectedRoute';
 import LoginPage from './pages/auth/LoginPage';
 import RegisterPage from './pages/auth/RegisterPage';
 import ProjectsPage from './pages/projects/ProjectsPage';
+import ProjectDetailPage from './pages/projects/ProjectDetailPage';
+
 
 function App() {
   return (
@@ -23,6 +25,14 @@ function App() {
             }
           />
           <Route path="/" element={<Navigate to="/projects" replace />} />
+          <Route path="/projects/:id" 
+            element = {
+              <ProtectedRoute>
+                <ProjectDetailPage />
+              </ProtectedRoute>
+            }
+          />
+
         </Routes>
       </AuthProvider>
     </BrowserRouter>

@@ -5,8 +5,13 @@ import type{
   UpdateProjectDto,
   ProjectSummaryDto,
   ProjectResponseDto,
-  ApiResponse
+  ApiResponse,
+  WorkItemSummaryDto,
+  CreateWorkItemDto,
+  WorkItemResponseDto,
+  UpdateWorkItemStatusDto
 } from '../types/project.types';
+// import { data } from "react-router-dom";
 
 
 export const projectApi = {
@@ -39,3 +44,33 @@ export const projectApi = {
     await axiosInstance.delete(`/project/${id}`);
   },
 };
+
+export const workItemApi = {
+
+ // GET /api/projects/{projectId}/workitems
+
+ getbyProject : async (projectId : string) : Promise<WorkItemSummaryDto[]> => {
+
+    const response = await axiosInstance.get<ApiResponse<WorkItemSummaryDto[]>>(`/projects/${projectId}/workitems`);
+    return response.data.data;
+ },
+ // POST /api/projects/{projectId}/workitems
+ create : async (projectId : string, dto : CreateWorkItemDto) : Promise<WorkItemResponseDto> => {
+
+    const response = await axiosInstance.post<ApiResponse<WorkItemResponseDto>>(`/projects/${projectId}/workitems`, dto);
+    return response.data.data;
+ },
+
+ // PATCH status
+ updateStatus : async (projectId : string, workItemId : string, dto : UpdateWorkItemStatusDto) : Promise<WorkItemResponseDto> => {
+
+    const response = await axiosInstance.post<ApiResponse<WorkItemResponseDto>>(`/projects/${projectId}/workitems/${workItemId}/status`, dto);
+    return response.data.data;
+ },
+ //delete
+
+ delete : async (projectId : string, workItemId : string) : Promise<void> => {
+    await axiosInstance.delete(`/projects/${projectId}/workitems/${workItemId}`);
+ }
+
+}
