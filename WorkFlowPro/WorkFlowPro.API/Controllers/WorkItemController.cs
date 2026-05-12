@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using WorkFlowPro.Application.Common.Interfaces;
 using WorkFlowPro.Application.Common.Models;
 using WorkFlowPro.Application.Features.WorkItems.DTOs;
 using WorkFlowPro.Infrastructure.Services;
@@ -13,9 +14,9 @@ namespace WorkFlowPro.API.Controllers
     public class WorkItemController : ControllerBase
     {
 
-        private readonly WorkItemService _workItemService;
+        private readonly IWorkItemService _workItemService;
 
-        public WorkItemController(WorkItemService workItemService)
+        public WorkItemController(IWorkItemService workItemService)
         {
             _workItemService = workItemService;
         }

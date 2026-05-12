@@ -14,6 +14,10 @@ namespace WorkFlowPro.Infrastructure.Repositories
     {
 
         private readonly AppDbContext _context;
+        public WorkItemRepository(AppDbContext context)
+        {
+            _context = context;
+        }
 
         public async Task<bool> BelongsToProjectAsync(Guid workItemId, Guid projectId)
         {
