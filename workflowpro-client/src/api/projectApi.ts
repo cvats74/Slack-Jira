@@ -62,11 +62,12 @@ export const workItemApi = {
  },
 
  // PATCH status
- updateStatus : async (projectId : string, workItemId : string, dto : UpdateWorkItemStatusDto) : Promise<WorkItemResponseDto> => {
-
-    const response = await axiosInstance.post<ApiResponse<WorkItemResponseDto>>(`/projects/${projectId}/workitems/${workItemId}/status`, dto);
-    return response.data.data;
- },
+updateStatus: async (projectId: string, workItemId: string, dto: UpdateWorkItemStatusDto): Promise<WorkItemResponseDto> => {
+  const response = await axiosInstance.patch<ApiResponse<WorkItemResponseDto>>(
+    `/projects/${projectId}/workitems/${workItemId}/status`, dto
+  );
+  return response.data.data;
+},
  //delete
 
  delete : async (projectId : string, workItemId : string) : Promise<void> => {

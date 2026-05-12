@@ -37,6 +37,7 @@ export interface ProjectResponseDto {
   memberCount: number;
   taskCount: number;
   completedTaskCount: number;
+   progressPercentage: number;
 }
 
 // Standard API response wrapper
@@ -47,4 +48,52 @@ export interface ApiResponse<T> {
   data: T;
   errors: string[];
   statusCode: number;
+}
+
+
+//=================workItem=================
+export interface WorkItemSummaryDto {
+  id: string;
+  title: string;
+  status: string;
+  priority: string;
+  dueDate?: string;
+  assigneeId?: string;
+  assigneeName?: string;
+  subTaskCount: number;
+  commentCount: number;
+  isOverdue: boolean;
+}
+
+export interface WorkItemResponseDto {
+  id: string;
+  title: string;
+  description: string;
+  status: string;
+  priority: string;
+  dueDate?: string;
+  createdAt: string;
+  estimatedHours?: number;
+  actualHours?: number;
+  projectId: string;
+  projectName: string;
+  reporterId: string;
+  reporterName: string;
+  assigneeId?: string;
+  assigneeName?: string;
+  subTasks: WorkItemSummaryDto[];
+  commentCount: number;
+}
+
+export interface CreateWorkItemDto {
+  title: string;
+  description: string;
+  priority: number;
+  dueDate?: string;
+  assigneeId?: string;
+  estimatedHours?: number;
+}
+
+export interface UpdateWorkItemStatusDto {
+  status: number;
 }
