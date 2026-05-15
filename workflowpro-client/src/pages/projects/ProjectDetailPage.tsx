@@ -8,7 +8,8 @@ import { useAuth } from '../../context/AuthContext';
 import type {
   ProjectResponseDto,
   WorkItemSummaryDto,
-  CreateWorkItemDto
+  CreateWorkItemDto,
+  ProjectMemberDto
 } from '../../types/project.types';
 
 // Status columns for Kanban board
@@ -16,7 +17,7 @@ import type {
 const KANBAN_COLUMNS = [
   { 
     label: 'Todo', 
-    status: 'Todo', 
+    status: 'ToDo', 
     statusValue: 1,
     color: '#6366f1',
     bg: '#eef2ff'
@@ -73,9 +74,11 @@ function ProjectDetailPage() {
 
   // Which column triggered the create modal
   // So we pre-set the status
-  const [defaultStatus, setDefaultStatus] = 
-    useState<number>(1);
+  const [defaultStatus, setDefaultStatus] = useState<number>(1);
 
+    //members
+    const[members, setMembers] = useState<ProjectMemberDto[]>([]);
+    
   // New task form
   const [newTask, setNewTask] = 
     useState<CreateWorkItemDto>({
@@ -102,13 +105,15 @@ function ProjectDetailPage() {
       // Load project details and tasks in parallel
       // Promise.all = run both requests simultaneously
       // Faster than running one after another
-      const [projectData, tasksData] = await Promise.all([
+      const [projectData, tasksData, memberData] = await Promise.all([
         projectApi.getById(id!),
-        workItemApi.getbyProject(id!)
+        workItemApi.getbyProject(id!),
+        projectApi.getMembers(id!)
       ]);
 
       setProject(projectData);
       setWorkItems(tasksData);
+      setMembers(memberData);
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
@@ -339,102 +344,146 @@ function ProjectDetailPage() {
       </main>
 
       {/* Create Task Modal */}
-      {showCreateTask && (
-        <div style={styles.modalOverlay}>
-          <div style={styles.modal}>
-            <h3 style={styles.modalTitle}>
-              Create New Task
-            </h3>
+        {showCreateTask && (
+            <div style={styles.modalOverlay}>
+                <div style={styles.modal}>
+                <h3 style={styles.modalTitle}>
+                    Create New Task
+                </h3>
 
-            <form onSubmit={handleCreateTask}>
-              <div style={styles.fieldGroup}>
-                <label style={styles.label}>
-                  Task Title *
-                </label>
-                <input
-                  type="text"
-                  value={newTask.title}
-                  onChange={e => setNewTask(p => ({
-                    ...p, title: e.target.value
-                  }))}
-                  placeholder="e.g. Build login screen"
-                  style={styles.input}
-                  autoFocus
-                />
-              </div>
+                <form onSubmit={handleCreateTask}>
+                    
+                    {/* Title */}
+                    <div style={styles.fieldGroup}>
+                    <label style={styles.label}>
+                        Task Title *
+                    </label>
+                    <input
+                        type="text"
+                        value={newTask.title}
+                        onChange={e => setNewTask(
+                        (prev: CreateWorkItemDto) => ({
+                            ...prev, title: e.target.value
+                        })
+                        )}
+                        placeholder="e.g. Build login screen"
+                        style={styles.input}
+                        autoFocus
+                    />
+                    </div>
 
-              <div style={styles.fieldGroup}>
-                <label style={styles.label}>
-                  Description
-                </label>
-                <textarea
-                  value={newTask.description}
-                  onChange={e => setNewTask(p => ({
-                    ...p, description: e.target.value
-                  }))}
-                  placeholder="Task details..."
-                  style={styles.textarea}
-                  rows={3}
-                />
-              </div>
+                    {/* Description */}
+                    <div style={styles.fieldGroup}>
+                    <label style={styles.label}>
+                        Description
+                    </label>
+                    <textarea
+                        value={newTask.description}
+                        onChange={e => setNewTask(
+                        (prev: CreateWorkItemDto) => ({
+                            ...prev, description: e.target.value
+                        })
+                        )}
+                        placeholder="Task details..."
+                        style={styles.textarea}
+                        rows={3}
+                    />
+                    </div>
 
-              <div style={styles.row}>
-                <div style={styles.fieldGroup}>
-                  <label style={styles.label}>
-                    Priority
-                  </label>
-                  <select
-                    value={newTask.priority}
-                    onChange={e => setNewTask(p => ({
-                      ...p,
-                      priority: Number(e.target.value)
-                    }))}
-                    style={styles.select}
-                  >
-                    <option value={1}>Low</option>
-                    <option value={2}>Medium</option>
-                    <option value={3}>High</option>
-                    <option value={4}>Critical</option>
-                  </select>
+                    {/* Priority + Due Date row */}
+                    <div style={styles.row}>
+                    <div style={styles.fieldGroup}>
+                        <label style={styles.label}>
+                        Priority
+                        </label>
+                        <select
+                        value={newTask.priority}
+                        onChange={e => setNewTask(
+                            (prev: CreateWorkItemDto) => ({
+                            ...prev,
+                            priority: Number(e.target.value)
+                            })
+                        )}
+                        style={styles.select}
+                        >
+                        <option value={1}>Low</option>
+                        <option value={2}>Medium</option>
+                        <option value={3}>High</option>
+                        <option value={4}>Critical</option>
+                        </select>
+                    </div>
+
+                    <div style={styles.fieldGroup}>
+                        <label style={styles.label}>
+                        Due Date
+                        </label>
+                        <input
+                        type="date"
+                        value={newTask.dueDate || ''}
+                        onChange={e => setNewTask(
+                            (prev: CreateWorkItemDto) => ({
+                            ...prev, dueDate: e.target.value
+                            })
+                        )}
+                        style={styles.input}
+                        />
+                    </div>
+                    </div>
+
+                    {/* Assignee dropdown */}
+                    <div style={styles.fieldGroup}>
+                    <label style={styles.label}>
+                        Assign To
+                    </label>
+                    <select
+                        value={newTask.assigneeId || ''}
+                        onChange={e => {
+                        const val = e.target.value;
+                        setNewTask(
+                            (prev: CreateWorkItemDto) => ({
+                            ...prev,
+                            assigneeId: val || undefined
+                            })
+                        );
+                        }}
+                        style={styles.select}
+                    >
+                        <option value="">Unassigned</option>
+                        {members.map(member => (
+                        <option
+                            key={member.userId}
+                            value={member.userId}
+                        >
+                            {member.fullName} ({member.role})
+                        </option>
+                        ))}
+                    </select>
+                    </div>
+
+                    {/* Buttons */}
+                    <div style={styles.modalButtons}>
+                    <button
+                        type="button"
+                        onClick={() => setShowCreateTask(false)}
+                        style={styles.cancelBtn}
+                    >
+                        Cancel
+                    </button>
+                    <button
+                        type="submit"
+                        disabled={isCreating}
+                        style={styles.submitBtn}
+                    >
+                        {isCreating ? 'Creating...' : 'Create Task'}
+                    </button>
+                    </div>
+
+                </form>
                 </div>
+            </div>
+        )}
 
-                <div style={styles.fieldGroup}>
-                  <label style={styles.label}>
-                    Due Date
-                  </label>
-                  <input
-                    type="date"
-                    value={newTask.dueDate || ''}
-                    onChange={e => setNewTask(p => ({
-                      ...p, dueDate: e.target.value
-                    }))}
-                    style={styles.input}
-                  />
-                </div>
-              </div>
-
-              <div style={styles.modalButtons}>
-                <button
-                  type="button"
-                  onClick={() => setShowCreateTask(false)}
-                  style={styles.cancelBtn}
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  disabled={isCreating}
-                  style={styles.submitBtn}
-                >
-                  {isCreating
-                    ? 'Creating...'
-                    : 'Create Task'}
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
+      
     </div>
   );
 }
@@ -500,6 +549,8 @@ function TaskCard({ task, columns, onStatusChange }: TaskCardProps) {
             </span>
           )}
         </div>
+       
+        
 
         {/* Footer: assignee + status controls */}
         <div style={styles.taskFooter}>

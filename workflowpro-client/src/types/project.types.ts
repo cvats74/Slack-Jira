@@ -93,6 +93,13 @@ export interface CreateWorkItemDto {
   assigneeId?: string;
   estimatedHours?: number;
 }
+export interface ProjectMemberDto {
+  userId: string;
+  fullName: string;
+  email: string;
+  role: string;
+  joinedAt: string;
+}
 
 export interface UpdateWorkItemStatusDto {
   status: number;

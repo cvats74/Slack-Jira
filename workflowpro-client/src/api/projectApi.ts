@@ -9,7 +9,8 @@ import type{
   WorkItemSummaryDto,
   CreateWorkItemDto,
   WorkItemResponseDto,
-  UpdateWorkItemStatusDto
+  UpdateWorkItemStatusDto,
+  ProjectMemberDto
 } from '../types/project.types';
 // import { data } from "react-router-dom";
 
@@ -18,7 +19,13 @@ export const projectApi = {
 
     //GET /api/Project
     getMyProjects : async () : Promise<ProjectSummaryDto[]> =>{
-        const response = await axiosInstance.get<ApiResponse<ProjectSummaryDto[]>>('/project');
+        const response = await axiosInstance.get<ApiResponse<ProjectSummaryDto[]>>(`/project`);
+        return response.data.data;
+    },
+
+    //GET /api/Project/members
+    getMembers : async (id : string) : Promise<ProjectMemberDto[]> =>{
+        const response = await axiosInstance.get<ApiResponse<ProjectMemberDto[]>>(`/project/${id}/members`);
         return response.data.data;
     },
 
@@ -73,5 +80,7 @@ updateStatus: async (projectId: string, workItemId: string, dto: UpdateWorkItemS
  delete : async (projectId : string, workItemId : string) : Promise<void> => {
     await axiosInstance.delete(`/projects/${projectId}/workitems/${workItemId}`);
  }
+
+
 
 }

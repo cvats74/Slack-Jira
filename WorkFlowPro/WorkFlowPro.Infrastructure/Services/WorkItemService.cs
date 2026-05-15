@@ -102,7 +102,7 @@ namespace WorkFlowPro.Infrastructure.Services
         public async Task<WorkItemResponseDto> GetByIdAsync(Guid workItemId, Guid currentUserId)
         {
             var workItem = await _workItemRepository.GetByIdWithDetailsAsync(workItemId);
-            if (workItem != null)
+            if (workItem == null)
             {
                 throw new KeyNotFoundException("Task not found");
             }
