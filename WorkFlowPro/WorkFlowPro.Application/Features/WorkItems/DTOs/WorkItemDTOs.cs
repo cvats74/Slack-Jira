@@ -104,7 +104,7 @@ namespace WorkFlowPro.Application.Features.WorkItems.DTOs
         public int CommentCount { get; set; }
 
         //overdue tasks
-        public bool IsOverdue => DueDate.HasValue && DueDate.Value > DateTime.UtcNow && Status != "Done" && Status != "Completed";
+        public bool IsOverdue => DueDate.HasValue && DueDate.Value < DateTime.UtcNow && Status != "Done" && Status != "Completed";
     }
 
 }
